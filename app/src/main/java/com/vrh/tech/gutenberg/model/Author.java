@@ -3,7 +3,9 @@ package com.vrh.tech.gutenberg.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Author {
+import java.io.Serializable;
+
+public class Author implements Serializable {
 
     @SerializedName("birth_year")
     @Expose

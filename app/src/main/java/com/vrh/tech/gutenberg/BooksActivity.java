@@ -1,6 +1,7 @@
 package com.vrh.tech.gutenberg;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import java.util.List;
 public class BooksActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BookAdapter adapter;
-    private List<BookDetail> listBooks = new ArrayList<>();
+    private List<BookDetail> listBooks;// = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,18 @@ public class BooksActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("Activity"));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        listBooks = ((ArrayList<BookDetail>) getIntent().getExtras().getSerializable("list"));
         init();
     }
 
     private void init() {
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new BookAdapter(listBooks);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        recyclerView.setAdapter(adapter);
+        if (listBooks != null) {
+            Log.d("VV", listBooks.size() + "v vasda");
+            adapter = new BookAdapter(listBooks);
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     @Override

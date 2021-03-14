@@ -1,9 +1,12 @@
 package com.vrh.tech.gutenberg.model;
-import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BookDetail {
+import java.io.Serializable;
+import java.util.List;
+
+public class BookDetail implements Serializable {
 
     @SerializedName("id")
     @Expose
